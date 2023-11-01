@@ -1,0 +1,110 @@
+body{
+  background-image: url("./assets/SUNYKorea_AcBldg.jpg");
+}
+.pageName{
+  text-align: center;
+  font-size: 60px;
+  font-family: 'Courier New', Courier, monospace;
+}
+.MenuBar{
+  background: hsl(0 0% 100% / 0.1);
+  backdrop-filter: blur(1rem);
+  margin-top: 0%;
+  height: 30px;
+}
+.MenuBarUl{ 
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.lists{
+  color: white;
+  margin-right: 50px;
+  font-size: 20px;
+}
+
+@media (max-width: 40em) {
+  .MenuBarUl {
+    --gap: 2em;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    right: 30%; 
+    bottom: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.5);
+    flex-direction: column;
+    padding: min(30vh, 10rem) 2em;
+  }
+
+  .MenuBarUl[data-visible="true"] {
+    transform: translateX(0%);
+  }
+
+  #b {
+    display: block;
+    position: absolute;
+    z-index: 9999;
+    background: skyblue;
+    width: auto;
+    aspect-ratio: 1;
+    top: 2rem;
+    right: 2rem;
+  }
+}
+@media (min-width: 40.01em) {
+  #b {
+    display: none;
+  }
+}
+
+.BackBoard{
+  background-color: #4683B2;
+  height: 350px;
+  width: 90%;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#SetPreviousCourses {
+  background-color: cadetblue;
+  width: 150px;
+  height: 60px;
+  position: absolute;
+  top: 70%;
+  left: 3%;
+  border: solid black 1px;
+}
+.SearchTitle{
+  margin-left: 20px;
+  margin-top: 10px;
+}
+#NewDiv{
+  background-color: #4683B2;
+  height: 550px;
+  width: 100%;
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translate(-54%, 0%);
+}
+.InnerBox{
+  margin: 3%;
+  border-color: blue;
+  border-style: solid;
+  width: 100%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+}
+.list2{
+  margin-left: 5%;
+}
+#Register{
+  background-color: cadetblue;
+  width: 150px;
+  border: solid black 1px;
+}
