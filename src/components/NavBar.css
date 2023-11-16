@@ -1,0 +1,70 @@
+/* NavBar.css */
+
+.MenuBar {
+    background: hsl(0 0% 100% / 0.1);
+    backdrop-filter: blur(1rem);
+    margin-top: 0%;
+    height: 30px;
+    position: absolute;
+    top: 10%;
+    left: 0;
+    right: 0;
+    z-index: 100;
+  }
+  
+  .MenuBarUl {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: flex-end; /* Align to the right */
+    align-items: center;
+  }
+  
+  .lists {
+    color: white;
+    margin-right: 50px;
+    font-size: 20px;
+  }
+  
+  .MenuBarHidden {
+    display: none;
+  }
+  
+  @media (max-width: 40em) {
+    .MenuBarUl {
+      --gap: 2em;
+      position: fixed;
+      z-index: 1000;
+      top: 0;
+      right: 0; /* Align to the right */
+      bottom: 0;
+      left: 30%;
+      background-color: rgba(255, 255, 255, 0.5);
+      flex-direction: column;
+      padding: min(30vh, 10rem) 2em;
+      height: 100vh;
+    }
+  
+    .MenuBarUl[data-visible="true"] {
+      transform: translateX(0%);
+    }
+  
+    #b {
+      display: block;
+      position: fixed;
+      z-index: 9999;
+      background: skyblue;
+      width: 50px;
+      height: 50px;
+      aspect-ratio: 1;
+      top: 2rem;
+      right: 2rem;
+    }
+  }
+  
+  @media (min-width: 40.01em) {
+    #b {
+      display: none;
+    }
+  }
+  

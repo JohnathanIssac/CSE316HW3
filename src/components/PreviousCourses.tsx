@@ -1,79 +1,99 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import Axios from "axios";
+import { studentID } from "./EnterStudentID"; // Import the studentID
+import "../App.css";
 
-interface CourseCheckbox {
-  id: string;
-  value: string;
-  checked?: boolean;
+interface Course {
+  course_id: string;
 }
 
-const CourseList: React.FC<{ onSaveCourses: (selectedCourses: CourseCheckbox[]) => void }> = ({ onSaveCourses }) => {
-  const initialCourses: CourseCheckbox[] = [
-    { id: 'CSE101', value: 'CSE101' },
-    { id: 'CSE114', value: 'CSE114' },
-    { id: 'CSE214', value: 'CSE214' },
-    { id: 'CSE215', value: 'CSE215' },
-    { id: 'CSE216', value: 'CSE216' },
-    { id: 'CSE220', value: 'CSE220' },
-    { id: 'CSE300', value: 'CSE300' },
-    { id: 'CSE303', value: 'CSE303' },
-    { id: 'CSE305', value: 'CSE305' },
-    { id: 'CSE306', value: 'CSE306' },
-    { id: 'CSE310', value: 'CSE310' },
-    { id: 'CSE312', value: 'CSE312' },
-    { id: 'CSE316', value: 'CSE316' },
-    { id: 'CSE320', value: 'CSE320' },
-    { id: 'CSE416', value: 'CSE416' }
-  ];
+const PreviousCourses = () => {
+  const [coursePre, setCoursePre] = useState<Course[]>([]);
+  const [checkedCourses, setCheckedCourses] = useState<string[]>([]);
+  const [submissionSuccess, setSubmissionSuccess] = useState(false);
+  const isStudentIDEmpty = studentID.trim() === "";
 
-  const [courses, setCourses] = useState<CourseCheckbox[]>(initialCourses);
+  useEffect(() => {
+    Axios.get(`http://127.0.0.1:3001/getAllCourseIDs`)
+      .then(response => {
+        console.log("Received courses from server:", response.data);
+        setCoursePre(response.data);
+      })
+      .catch(error => {
+        console.error("Error fetching courses: ", error);
+      });
+  }, []);
 
-  const handleCheckboxChange = (id: string) => {
-    setCourses((prevCourses) =>
-      prevCourses.map((course) =>
-        course.id === id ? { ...course, checked: !course.checked } : course
-      )
-    );
+  const handleCheckboxChange = (courseId: string) => {
+    setCheckedCourses(prevCheckedCourses => {
+      if (prevCheckedCourses.includes(courseId)) {
+        return prevCheckedCourses.filter(id => id !== courseId);
+      } else {
+        return [...prevCheckedCourses, courseId];
+      }
+    });
   };
 
-  const handleSaveCourses = () => {
-    const selectedCourses = courses.filter((course) => course.checked);
-    onSaveCourses(selectedCourses);
-  };
-
-  return (
-    <div className="row justify-content-center" style={{ margin: '50px', listStyle: 'none', padding: 0 }}>
-      {courses.map((course) => (
-        <div key={course.id} className="col-3" style={{ marginBottom: '20px' }}>
-          <input
-            type="checkbox"
-            name="course"
-            id={course.id}
-            value={course.value}
-            checked={course.checked || false}
-            onChange={() => handleCheckboxChange(course.id)}
-          />
-          <label>{course.value}</label>
-        </div>
-      ))}
-      <button id="SetPreviousCourses" className="btn m-2 btn-pr" onClick={handleSaveCourses}>
-        Set Previous Courses
-      </button>
-    </div>
-  );
-};
-
-function PreviousCourses() {
-  const handleSaveCourses = (selectedCourses: CourseCheckbox[]) => {
-    console.log("Selected Courses:", selectedCourses);
-    alert("Submission accepted. Selected courses: " + selectedCourses.map((course) => course.value).join(", "));
+  const handleSetPreviousCourses = () => {
+    console.log("Selected Courses: ", checkedCourses);
+    if (checkedCourses.length > 0) {
+      Axios.post(`http://127.0.0.1:3001/updateTranscript`, {
+        studentID: studentID,
+        selectedCourses: checkedCourses,
+      })
+        .then(response => {
+          console.log("Courses updated successfully:", response.data);
+          setSubmissionSuccess(true); // Set success state to true
+        })
+        .catch(error => {
+          console.error("Error updating courses: ", error);
+        });
+    }
   };
 
   return (
     <div className="BackBoard">
-      <p className="paragraph">Check off the courses you have completed with a C or better.</p>
-      <CourseList onSaveCourses={handleSaveCourses} />
+      {isStudentIDEmpty ? (
+        <>
+          <h2 className="cen">Student ID: -1</h2>
+          <h2 className="cen">Check off courses you have completed with a C or better</h2>
+        </>
+      ) : (
+        <>
+          <h2 className="cen">Student ID: {studentID}</h2>
+          <div className="course-list">
+            {coursePre.map((course, index) => (
+              <div key={index} className="course-item">
+                <label>
+                  <input
+                    type="checkbox"
+                    value={course.course_id}
+                    checked={checkedCourses.includes(course.course_id)}
+                    onChange={() => handleCheckboxChange(course.course_id)}
+                  />
+                  {course.course_id}
+                </label>
+              </div>
+            ))}
+            <div className="BTNCenter">
+              <button
+                id="preCbtn"
+                className="btn m-2 btn-pr"
+                onClick={handleSetPreviousCourses}
+              >
+                Set Previous Courses
+              </button>
+            </div>
+          </div>
+          {submissionSuccess && (
+            <div className="success-message">
+              Submission was successful! {/* You can customize this message */}
+            </div>
+          )}
+        </>
+      )}
     </div>
   );
-}
+};
 
 export default PreviousCourses;

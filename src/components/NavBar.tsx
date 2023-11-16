@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import "./NavBar.css"
 
 function NavBar() {
   const [show, setShow] = useState(true);
@@ -19,11 +20,14 @@ function NavBar() {
           <Link to='/instructions' style={{ textDecoration: 'none' }}>
             <li className='lists'>01 Instruction</li>
           </Link>
+          <Link to='/EnterStudentID' style={{ textDecoration: 'none' }}>
+            <li className='lists'>02 Set Student ID</li>
+          </Link>
           <Link to='/previouscourses' style={{ textDecoration: 'none' }}>
-            <li className='lists'>02 Enter the Previous Courses</li>
+            <li className='lists'>03 Enter the Previous Courses</li>
           </Link>
           <Link to='/selectcourses' style={{ textDecoration: 'none' }}>
-            <li className='lists'>03 Select the Courses</li>
+            <li className='lists'>04 Select the Courses</li>
           </Link>
         </ul>
       </nav>

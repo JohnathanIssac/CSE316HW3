@@ -5,6 +5,7 @@ import NavBar from './NavBar';
 import Instruction from './Instruction'; 
 import PreviousCourses from './PreviousCourses'; 
 import SelectCourses from './SelectCourses'; 
+import EnterStudentID from './EnterStudentID';
 import '../App.css';
 
 function First(){
@@ -18,6 +19,7 @@ function First(){
         <div>
           <Routes>
             <Route path="/Instruction" element={<Instruction />} />
+            <Route path="/EnterStudentID" element={<EnterStudentID />} />
             <Route path="/PreviousCourses" element={<PreviousCourses />} />
             <Route path="/SelectCourses" element={<SelectCourses />} />
           </Routes>

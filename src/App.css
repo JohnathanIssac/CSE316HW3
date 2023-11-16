@@ -1,25 +1,29 @@
-body{
+body {
   background-image: url("./assets/SUNYKorea_AcBldg.jpg");
 }
-.pageName{
+
+.pageName {
   text-align: center;
   font-size: 60px;
   font-family: 'Courier New', Courier, monospace;
 }
-.MenuBar{
+
+.MenuBar {
   background: hsl(0 0% 100% / 0.1);
   backdrop-filter: blur(1rem);
   margin-top: 0%;
   height: 30px;
 }
-.MenuBarUl{ 
+
+.MenuBarUl {
   list-style-type: none;
   padding: 0;
   display: flex;
   justify-content: flex-end;
   align-items: center;
 }
-.lists{
+
+.lists {
   color: white;
   margin-right: 50px;
   font-size: 20px;
@@ -31,7 +35,7 @@ body{
     position: fixed;
     z-index: 1000;
     top: 0;
-    right: 30%; 
+    right: 30%;
     bottom: 0;
     left: 0;
     background-color: rgba(255, 255, 255, 0.5);
@@ -54,13 +58,14 @@ body{
     right: 2rem;
   }
 }
+
 @media (min-width: 40.01em) {
   #b {
     display: none;
   }
 }
 
-.BackBoard{
+.BackBoard {
   background-color: #4683B2;
   height: 350px;
   width: 90%;
@@ -68,7 +73,23 @@ body{
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
+  justify-content: center;
 }
+
+.board {
+  top: 40%;
+}
+
+.IDEntry {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.cen {
+  margin-top: 20px;
+  text-align: center;
+}
+
 #SetPreviousCourses {
   background-color: cadetblue;
   width: 150px;
@@ -78,11 +99,17 @@ body{
   left: 3%;
   border: solid black 1px;
 }
-.SearchTitle{
+
+.SearchTitle {
   margin-left: 20px;
   margin-top: 10px;
 }
-#NewDiv{
+
+.board {
+  top: 50%;
+}
+
+#NewDiv {
   background-color: #4683B2;
   height: 550px;
   width: 100%;
@@ -91,7 +118,8 @@ body{
   left: 50%;
   transform: translate(-54%, 0%);
 }
-.InnerBox{
+
+.InnerBox {
   margin: 3%;
   border-color: blue;
   border-style: solid;
@@ -100,11 +128,57 @@ body{
   display: flex;
   flex-direction: column;
 }
-.list2{
+
+.list2 {
   margin-left: 5%;
 }
-#Register{
+
+#Register {
   background-color: cadetblue;
   width: 150px;
   border: solid black 1px;
+}
+
+#IDSet {
+  background-color: cadetblue;
+  width: 150px;
+  border: solid black 1px;
+  margin-top: 30px;
+}
+
+#preCbtn {
+  background-color: cadetblue;
+  width: 150px;
+  border: solid black 1px;
+  margin-top: 30px;
+}
+
+.BTNCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20vh;
+  width: 85%;
+}
+
+.BTNcenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40vh;
+}
+
+.course-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 100px;
+}
+
+.course-item {
+  width: 25%;
+  margin-bottom: 10px;
+}
+
+.course-item label {
+  display: block;
 }

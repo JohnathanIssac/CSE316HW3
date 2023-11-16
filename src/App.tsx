@@ -4,6 +4,7 @@ import NavBar from './components/NavBar';
 import Instruction from './components/Instruction';
 import PreviousCourses from './components/PreviousCourses';
 import SelectCourses from './components/SelectCourses';
+import EnterStudentID from './components/EnterStudentID';
 import './App.css';
 
 function App() {
@@ -31,6 +32,9 @@ function Menu() {
       case '/selectcourses':
         pageName = 'CourseMan => Search/Register';
         break;
+      case '/EnterStudentID':
+        pageName = 'CourseMan => Search/Register';
+        break;
       default:
         pageName = 'CourseMan';
     }
@@ -49,6 +53,7 @@ function Menu() {
         <Routes>
           <Route path="/" element={<div></div>} />
           <Route path="/instructions/*" element={<Instruction />} />
+          <Route path="/EnterStudentID/*" element={<EnterStudentID />} />
           <Route path="/previouscourses/*" element={<PreviousCourses />} />
           <Route path="/selectcourses/*" element={<SelectCourses />} />
         </Routes>
