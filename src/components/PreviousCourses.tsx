@@ -87,7 +87,7 @@ const PreviousCourses = () => {
           </div>
           {submissionSuccess && (
             <div className="success-message">
-              Submission was successful! {/* You can customize this message */}
+              Submission was successful!
             </div>
           )}
         </>
